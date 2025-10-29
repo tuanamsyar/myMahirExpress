@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+
+    <!-- Font Awesome For Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Styles -->
+    <style>
+      body {
+        background-color: #f1f1f1;
+      }
+
+      .header {
+        padding: 80px;
+        text-align: center;
+        background: #1abc9c;
+        color: white;
+      }
+
+      .header h1 {
+        font-size: 40px;
+      }
+
+      .header p {
+        font-size: 20px;
+      }
+
+      .student-table {
+        margin: 40px auto;
+        width: 80%;
+        background-color: white;
+        overflow: hidden;
+      }
+
+      table {
+        width: 100%;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        padding: 8px;
+        text-align: left;
+        border: 2px solid #dddddd;
+      }
+
+      th {
+        background-color: #dddddd;
+      }
+      th:first-child,
+      td:first-child {
+        width: 50px;
+        text-align: center;
+      }
+
+      th:last-child,
+      td:last-child {
+        width: 120px;
+        text-align: center;
+      }
+
+      .actions {
+        gap: 10px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .btn {
+        font-size: 18px;
+        border: none;
+        background: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        cursor: pointer;
+      }
+      .btn:hover {
+        transform: scale(1.2);
+        opacity: 0.8;
+      }
+
+      .btn-view {
+        color: #2ecc71;
+      }
+
+      .btn-edit {
+        color: #3498db;
+      }
+
+      .btn-delete {
+        color: #e74c3c;
+      }
+      .add-button-container {
+        width: 80%;
+        margin: 40px auto 0;
+        text-align: right;
+      }
+
+      .add-button {
+        padding: 10px 25px;
+        gap: 8px;
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        background-color: #1abc9c;
+        display: inline-flex;
+        align-items: center;
+        transition: background 0.3s;
+      }
+
+      .add-button:hover {
+        background-color: #159d82;
+      }
+
+      .add-button i {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1><%= title %></h1>
+      <p><%= content %></p>
+    </div>
+    <!-- Add Button -->
+    <div class="add-button-container">
+      <a href="/students/add" class="add-button">
+        <i class="fa-solid fa-plus"></i> Add New Student
+      </a>
+    </div>
+
+    <div class="student-table">
+      <table>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Student No</th>
+          <th>Action</th>
+        </tr>
+        <% students.forEach( function( student, index ){ %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= student.name %></td>
+          <td><%= student.email %></td>
+          <td><%= student.phone %></td>
+          <td><%= student.student_no %></td>
+          <td>
+            <div class="actions">
+              <a
+                href="/students/<%= student.id %>"
+                class="btn btn-view"
+                title="View"
+              >
+                <i class="fa-solid fa-eye"></i>
+              </a>
+              <a
+                href="/students/update/<%= student.id %>"
+                class="btn btn-edit"
+                title="Edit"
+              >
+                <i class="fa-solid fa-pen"></i>
+              </a>
+              <a href="#" class="btn btn-delete" title="Delete">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+        <% }); %>
+      </table>
+    </div>
+  </body>
+</html>
